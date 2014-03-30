@@ -10,7 +10,7 @@ std::string Text::multiple(std::vector<std::string> v)
     //concatenate some vector tokens in one string with spaces
     std::string glued;
     std::for_each(std::begin(v), std::end(v), [&](std::string& s) { glued += s + ' ';});
-    glued.resize(glued.length() - 1);
+//  glued.resize(glued.length() - 1);
     return glued;
 }
 
@@ -31,12 +31,12 @@ Text::Text(std::string input)
     }
 }
 
-int Text::length()
+std::size_t Text::length()
 {
     return buffer.size();
 }
 
-std::string Text::string(int i)
+std::string Text::string(unsigned int i)
 {
-    return (i < length())?this->multiple(buffer[i-1]):"";
+    return (i < this->length() && i > 0)?this->multiple(buffer[i-1]):"";
 }

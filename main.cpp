@@ -12,7 +12,8 @@ int main()
         input += line + '\n';
     }
     Text t = Text(input);
-    int n = 0;
+    std::cout << "Time for input number of string";
+    unsigned int n = 0;
     std::cin >> n;
     std::cout << t.string(n);
     return 0;

@@ -10,8 +10,8 @@ protected:
     std::string multiple(std::vector<std::string> v);
 public:
     Text(std::string input);
-    int length();
-    std::string string(int i);
+    std::size_t length();
+    std::string string(unsigned int i);
 };
 
 #endif // TEXT_H
