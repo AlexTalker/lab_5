@@ -16,15 +16,18 @@ std::size_t Text::length()
 
 std::size_t Text::tok_length(unsigned int n)
 {
-    return buffer[n-1].size();
+    if(n > 0 && n <= length()){
+        return buffer[n-1].size();
+    }
+    return 0;
 }
 
-std::string Text::get_token(unsigned int n, unsigned int i)
+std::string Text::get_token(Position p)
 {
     std::string result = "";
-    if(0 < n && n <= this->length()){
-        if(0 < i && i <= buffer[n-1].size()){
-            result = buffer[n-1][i-1];
+    if(0 < p.n && p.n <= this->length()){
+        if(0 < p.i && p.i <= buffer[p.n-1].size()){
+            result = buffer[p.n-1][p.i-1];
         }
     }
     return result;
@@ -32,14 +35,14 @@ std::string Text::get_token(unsigned int n, unsigned int i)
 
 std::string Text::string(unsigned int i)
 {
-    return (i < this->length() && i > 0)?this->multiple(buffer[i-1]):"";
+    return (i <= this->length() && i > 0)?this->multiple(buffer[i-1]):"";
 }
 
 std::string Text::strings()
 {
     std::string temp;
     for(unsigned int i = 0; i < buffer.size();){
-        temp += string(++i);
+        temp += string(++i) + "\n";
     }
     return temp;
 }
@@ -86,7 +89,8 @@ bool Text::operator==(Text& t)
             if(this->tok_length(i) == t.tok_length(i)){
                 for(unsigned int j = 1;j <= this->tok_length(i);j++)
                 {
-                    if(this->get_token(i,j) == t.get_token(i,j))
+                    Position p = {i,j};
+                    if(this->get_token(p) == t.get_token(p))
                     {
                         continue;
                     }

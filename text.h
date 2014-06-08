@@ -2,6 +2,9 @@
 #define TEXT_H
 #include <string>
 #include <vector>
+struct Position{
+    unsigned int n,i;
+};
 
 class Text
 {
@@ -17,7 +20,7 @@ public:
     //количество лексем
     std::size_t tok_length(unsigned int);
     //получить токен
-    std::string get_token(unsigned int, unsigned int);
+    std::string get_token(Position p);
     //забрать содержимое одной строки
     std::string string(unsigned int);
     //забрать все строкой
